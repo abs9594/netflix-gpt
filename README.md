@@ -1,6 +1,8 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features:
+Login/Signup Form
+Rstricted view for Logged-in users 
+SearchBar
+Movie Suggestion using ChatGPT API
 
 ## Available Scripts
 
