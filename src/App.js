@@ -1,8 +1,6 @@
 import './App.css';
+import Body from './components/Body';
 
-const App = () =>
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+const App = () => <Body/>
 
 export default App;
