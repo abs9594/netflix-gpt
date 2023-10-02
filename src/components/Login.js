@@ -5,13 +5,12 @@ import { useRef } from 'react';
 import { validateCredentials } from "../utils/validations"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile  } from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
+import { BG_URL } from '../utils/constants';
 
 const Login = () => {
     const [isSignIn, setIsSignIn] = useState(true);
     const [errMessage, setErrMessage] = useState(null);
-    const navigate = useNavigate();
-
+    
     const nameRef = useRef(null);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
@@ -31,13 +30,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          updateProfile(user, {
-            displayName: nameRef.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/12824231?v=4",
-          })
-            .then(() => {
-              navigate("/browse");
-            })
+          updateProfile(user, {displayName: nameRef.current.value})
             .catch((error) => {
               setErrMessage(error.message);
             });
@@ -55,10 +48,6 @@ const Login = () => {
         passwordRef.current.value
       )
         .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -71,7 +60,7 @@ const Login = () => {
     return (
         <div>
             <Header />
-            <img src="https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-ec7df8539eff/d23a1608-7d90-4da1-93d6-bae2fe60a69b/IN-en-20230814-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+            <img src={BG_URL}
                 alt="background"
                 className="absolute" />
             <form className="w-3/12 absolute px-6 py-2 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
